@@ -1,0 +1,22 @@
+.Form {
+    color: white;
+    text-align: left;
+    min-height: 60vh;
+    padding: 0 10% 0 10%;
+}
+
+.Member-el {
+    margin: 10px;
+}
+
+.Add-member {
+    margin: 0 10px 0 10px;
+    background-color: darkgray;
+    border-radius: 3px;
+}
+
+.Remove-member {
+    margin: 0 10px 0 10px;
+    background-color: darkgray;
+    border-radius: 3px;
+}
