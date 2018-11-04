@@ -9,14 +9,31 @@
     margin: 10px;
 }
 
+input {
+    height: 2em;
+    margin: 0 10px 0 10px; 
+    background-color: white; 
+    border-radius: 3px;
+    padding: 0 5px 0 5px;
+}
+
 .Add-member {
     margin: 0 10px 0 10px;
     background-color: darkgray;
     border-radius: 3px;
+    height: 2em;
 }
 
 .Remove-member {
     margin: 0 10px 0 10px;
     background-color: darkgray;
     border-radius: 3px;
+    height: 2em;
+}
+
+.Submit {
+    margin: 0 10px 0 10px;
+    background-color: darkgray;
+    border-radius: 3px;
+    height: 2em;
 }

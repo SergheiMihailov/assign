@@ -7,6 +7,9 @@ class Form extends Component {
     this.state = {members: [{key: 0, name:'Example member'}], newMember: ''}
   }
 
+  onSubmit() {
+    this.props.pushMembersUp(this.state.members)
+  }
   addMember() {
     this.setState(
       prevState => (
@@ -19,7 +22,6 @@ class Form extends Component {
         }
       )
     )
-    this.props.pushMembersUp(this.state.members)
   }
 
   removeMember(key) {
@@ -34,12 +36,10 @@ class Form extends Component {
             }
           )
         )
-        this.props.pushMembersUp(this.state.members)
       }
     } else {
       return () => {
         this.setState({members: []})
-        this.props.pushMembersUp(this.state.members)
       }
     }
   }
@@ -71,6 +71,7 @@ class Form extends Component {
           }
         />
         <button className="Add-member" onClick = {this.addMember.bind(this)}> + </button>
+        <button className="Submit" onClick = {this.onSubmit.bind(this)}> Submit </button>
       </div>
     );
   }

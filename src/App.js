@@ -3,6 +3,10 @@ import './App.css';
 import Form from './Form.js';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {members: []}
+  }
   render() {
     return (
       <div className="App">
@@ -24,6 +28,7 @@ class App extends Component {
           </div>
           <div className="Output">
             <h3> Distribution: </h3>
+            {this.state.members.map((member)=> <div>{member.name}</div>)}
           </div>
         </div>
       </div>
