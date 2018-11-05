@@ -22,12 +22,13 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title"> Assign </h1>
           <p>
-            Tool distributing workload in study groups
+            A tool for distributing work in study groups
           </p>
           
         </header>
         <div className="IO-box">
           <div className="Input">
+            <h3> Input: </h3>
             <Form 
               pushStateUp = {(exesList, members) => 
                 this.setState({
@@ -38,6 +39,7 @@ class App extends Component {
             />
           </div>
           <div className="Output">
+            <h3> Distribution </h3>
             <Distribution 
               className = "Distribution"
               exercises = {this.state.exercises}
