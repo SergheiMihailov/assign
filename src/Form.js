@@ -4,11 +4,47 @@ import './Form.css';
 class Form extends Component {
   constructor(props) {
     super(props);
-    this.state = {members: [{key: 0, name:'Example member'}], newMember: ''}
+    this.state = {
+      members: [
+        {key: 0, name:'Example member 1'},
+        {key: 1, name:'Example member 2'},
+        {key: 2, name:'Example member 3'}
+      ], 
+      newMember: '',
+      exesInput: "[A, 1, 3]; [A, 5, 10] ",
+      exesList: []
+    }
+  }
+
+  parseExercises(exString) {  
+    let result = []
+
+    let exList = exString.split(';')
+        for (let i in exList) {
+          exList[i] = exList[i].split(',')
+          for (let j in exList[i]) {
+            exList[i][j] = exList[i][j].replace('[', '')
+            exList[i][j] = exList[i][j].replace(']', '')
+            exList[i][j] = exList[i][j].replace(' ', '')
+          }
+        }
+    for (let j = 0; j < exList.length; j++) {
+      let chunk = []
+      for (let i = parseInt(exList[j][1]); i <= parseInt(exList[j][2]); i++) {
+        chunk.push(exList[j][0]+i);
+      }
+      result = [...result, ...chunk]
+    }
+
+    return result
   }
 
   onSubmit() {
-    this.props.pushMembersUp(this.state.members)
+    this.setState({exesList: this.parseExercises(this.state.exesInput)})
+    this.props.pushStateUp(
+      this.state.exesList,
+      this.state.members
+    )
   }
   addMember() {
     this.setState(
@@ -47,6 +83,26 @@ class Form extends Component {
   render() {
     return (
       <div className="Form">
+        <button className="Submit" onClick = {this.onSubmit.bind(this)}> 
+          Distribute exercises
+        </button>
+        <p> Exercises: </p>
+        <p> (Input format: [chapter, first ex. last ex.]; [next chapter, ...] ... ) </p>
+        <input
+          value={this.state.exesInput}
+          onChange={
+            (event) => this.setState({exesInput:event.target.value})
+          }
+        />
+        <p> Team members: </p>
+        <input 
+          placeholder="New member name"
+          value={this.state.newMember}
+          onChange={
+            (event) => this.setState({newMember:event.target.value})
+          }
+        />
+        <button className="Add-member" onClick = {this.addMember.bind(this)}> + </button>
         <ul className="Member-list">
           {this.state.members.map( 
               (member) => 
@@ -62,16 +118,6 @@ class Form extends Component {
             )
           }
         </ul>
-        <input 
-          className="Input-member" 
-          title="New member name"
-          value={this.state.newMember}
-          onChange={
-            (event) => this.setState({newMember:event.target.value})
-          }
-        />
-        <button className="Add-member" onClick = {this.addMember.bind(this)}> + </button>
-        <button className="Submit" onClick = {this.onSubmit.bind(this)}> Submit </button>
       </div>
     );
   }
