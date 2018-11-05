@@ -39,14 +39,16 @@ class Form extends Component {
     return result
   }
 
-  onSubmit() {
+  onSubmit(event) {
+    event.preventDefault()
     this.setState({exesList: this.parseExercises(this.state.exesInput)})
     this.props.pushStateUp(
       this.state.exesList,
       this.state.members
     )
   }
-  addMember() {
+  addMember(event) {
+    event.preventDefault()
     this.setState(
       prevState => (
         {
@@ -83,26 +85,20 @@ class Form extends Component {
   render() {
     return (
       <div className="Form">
-        <button className="Submit" onClick = {this.onSubmit.bind(this)}> 
-          Distribute exercises
-        </button>
-        <p> Exercises: </p>
-        <p> (Input format: [chapter, first ex. last ex.]; [next chapter, ...] ... ) </p>
-        <input
-          value={this.state.exesInput}
-          onChange={
-            (event) => this.setState({exesInput:event.target.value})
-          }
-        />
         <p> Team members: </p>
-        <input 
-          placeholder="New member name"
-          value={this.state.newMember}
-          onChange={
-            (event) => this.setState({newMember:event.target.value})
-          }
-        />
-        <button className="Add-member" onClick = {this.addMember.bind(this)}> + </button>
+        <form onSubmit = {this.addMember.bind(this)}>
+          <input 
+            placeholder="New member name"
+            value={this.state.newMember}
+            onChange={
+              (event) => this.setState({newMember:event.target.value})
+            }
+          />
+          <button 
+            type="submit" 
+            className="Add-member" 
+          > + </button>
+        </form>
         <ul className="Member-list">
           {this.state.members.map( 
               (member) => 
@@ -118,6 +114,21 @@ class Form extends Component {
             )
           }
         </ul>
+        <p> Exercises: </p>
+        <p> (Input format: [chapter, first ex., last ex.]; [next chapter, ...] ... ) </p>
+        <form onSubmit = {this.onSubmit.bind(this)}>
+          <input
+            placeholder="[A, 1, 3]; [A, 5, 10]"
+            value={this.state.exesInput}
+            onChange={
+              (event) => this.setState({exesInput:event.target.value})
+            }
+          />
+        
+          <button type= "submit" className="Submit" onClick = {this.onSubmit.bind(this)}> 
+            Distribute exercises
+          </button>
+        </form>
       </div>
     );
   }
