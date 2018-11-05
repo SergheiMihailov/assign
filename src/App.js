@@ -39,7 +39,7 @@ class App extends Component {
             />
           </div>
           <div className="Output">
-            <h3> Distribution </h3>
+            <h3> Distribution: </h3>
             <Distribution 
               className = "Distribution"
               exercises = {this.state.exercises}
