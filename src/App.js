@@ -12,7 +12,7 @@ class App extends Component {
         {key: 1, name:'Example member 2'},
         {key: 2, name:'Example member 3'}
       ],
-      exercises: ['A1', 'A2', 'A3']
+      exercises: []
     }
   }
   render() {
@@ -22,7 +22,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title"> Assign </h1>
           <p>
-            For distributing workload in study groups
+            Tool distributing workload in study groups
           </p>
           
         </header>

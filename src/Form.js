@@ -31,7 +31,7 @@ class Form extends Component {
     for (let j = 0; j < exList.length; j++) {
       let chunk = []
       for (let i = parseInt(exList[j][1]); i <= parseInt(exList[j][2]); i++) {
-        chunk.push(exList[j][0]+i);
+        chunk.push(exList[j][0]+'['+i+']');
       }
       result = [...result, ...chunk]
     }

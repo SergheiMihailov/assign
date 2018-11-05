@@ -13,7 +13,7 @@ class Distribution extends Component {
       let nextExerciseId = Math.trunc(Math.random()*exes.length)
       console.log(members)
       let memberId = i % members.length
-      members[memberId].exercises += ', '+(exes[nextExerciseId])
+      members[memberId].exercises += (exes[nextExerciseId])+', '
       exes.splice(nextExerciseId, 1)
     }
   }
@@ -23,7 +23,7 @@ class Distribution extends Component {
     return (
       <div className="Distribution">
         {this.props.members.map(
-            (member) => <div> {member.name} {member.exercises}</div>
+            (member) => <div> {member.name}: {member.exercises}</div>
           )
         }
       </div>
