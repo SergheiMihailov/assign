@@ -22,10 +22,12 @@ class Distribution extends Component {
     this.createDistribution(this.props.members, this.props.exercises)
     return (
       <div className="Distribution">
-        {this.props.members.map(
-            (member) => <div> {member.name}: {member.exercises}</div>
-          )
-        }
+        <ul>
+          {this.props.members.map(
+              (member) => <li className="Member-el"> {member.name}: {member.exercises}</li>
+            )
+          }
+        </ul>
       </div>
     );
   }
