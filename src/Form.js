@@ -42,7 +42,7 @@ class Form extends Component {
     event.preventDefault()
     this.setState({exesList: this.parseExercises(this.state.exesInput)})
     this.props.pushStateUp(
-      this.state.exesList,
+      this.parseExercises(this.state.exesInput),
       this.state.members
     )
   }
