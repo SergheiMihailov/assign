@@ -16,12 +16,10 @@ class Form extends Component {
     let result = new Map()
     // A.1 - A.17,
     exString = exString.split(' ').join('')
-    console.log(exString)
     exString = exString.split(',')
     for (let entry of exString){
       if (entry.length > 1) {
         entry = entry.split('-')
-        console.log(entry)
         let chapter = entry[0].split('.')[0]
         let firstEx = parseInt(entry[0].split('.')[1])
         let lastEx = firstEx

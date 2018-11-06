@@ -17,7 +17,6 @@ class Distribution extends Component {
         
         
         exercises.push(parseInt(from[randEx]))
-        console.log(parseInt(from[randEx]))
         from.splice(randEx, 1)  
       }
 
