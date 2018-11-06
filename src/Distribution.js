@@ -16,7 +16,8 @@ class Distribution extends Component {
         let randEx = Math.floor((from.length-1)*Math.random())
         
         
-        exercises.push(from[randEx])
+        exercises.push(parseInt(from[randEx]))
+        console.log(parseInt(from[randEx]))
         from.splice(randEx, 1)  
       }
 
@@ -25,8 +26,9 @@ class Distribution extends Component {
           chapter[0], exercises.slice(
             i*exercises.length/members.length,
             Math.floor((i+1)*exercises.length/members.length)
-          )
+          ).sort((a, b) => a - b)
         )
+
       }
     }
   }
