@@ -7,28 +7,30 @@ class Form extends Component {
     this.state = {
       members: [], 
       newMember: '',
-      exesInput: "A: 1-3; A: 5-10",
+      exesInput: "A.1 - A.17,",
       exesList: []
     }
   }
 
   parseExercises(exString) {  
     let result = new Map()
-    // "A: 1-3; A: 5-10"
+    // A.1 - A.17,
     exString = exString.split(' ').join('')
     console.log(exString)
-    exString = exString.split(';')
+    exString = exString.split(',')
     for (let entry of exString){
-      entry = entry.split(':')
-      let chapter = entry[0]
-      let exercises = entry[1].split('-')
-      let firstEx = parseInt(exercises[0])
-      let lastEx = parseInt(exercises[1])
-      let range = Array.from(Array(lastEx-firstEx+1).keys()).map((i) => i+firstEx)
-      if (result.has(chapter)) {
-        result.set(chapter, [...result.get(chapter), ...range])
-      } else {
-        result.set(chapter, [...range])
+      if (entry.length > 1) {
+        entry = entry.split('-')
+        console.log(entry)
+        let chapter = entry[0].split('.')[0]
+        let firstEx = parseInt(entry[0].split('.')[1])
+        let lastEx = parseInt(entry[1].split('.')[1])
+        let range = Array.from(Array(lastEx-firstEx+1).keys()).map((i) => i+firstEx)
+        if (result.has(chapter)) {
+          result.set(chapter, [...result.get(chapter), ...range])
+        } else {
+          result.set(chapter, [...range])
+        }
       }
     }
        
@@ -115,7 +117,7 @@ class Form extends Component {
         <p> (Input format: chapter: first ex.-last ex.; next chapter: ...] ... ) </p>
         <form onSubmit = {this.onSubmit.bind(this)}>
           <input
-            placeholder="A: 1-3; A: 5-10"
+            placeholder="A.1 - A.17, "
             value={this.state.exesInput}
             onChange={
               (event) => this.setState({exesInput:event.target.value})
