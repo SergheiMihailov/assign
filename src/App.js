@@ -7,16 +7,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      members: [
-        {key: 0, name:'Example member 1'},
-        {key: 1, name:'Example member 2'},
-        {key: 2, name:'Example member 3'}
-      ],
+      members: [],
       exercises: []
     }
   }
   render() {
-    console.log(this.state)
     return (
       <div className="App">
         <header className="App-header">

@@ -5,37 +5,33 @@ class Form extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      members: [
-        {key: 0, name:'Example member 1'},
-        {key: 1, name:'Example member 2'},
-        {key: 2, name:'Example member 3'}
-      ], 
+      members: [], 
       newMember: '',
-      exesInput: "[A, 1, 3]; [A, 5, 10] ",
+      exesInput: "A: 1-3; A: 5-10",
       exesList: []
     }
   }
 
   parseExercises(exString) {  
-    let result = []
-
-    let exList = exString.split(';')
-        for (let i in exList) {
-          exList[i] = exList[i].split(',')
-          for (let j in exList[i]) {
-            exList[i][j] = exList[i][j].replace('[', '')
-            exList[i][j] = exList[i][j].replace(']', '')
-            exList[i][j] = exList[i][j].replace(' ', '')
-          }
-        }
-    for (let j = 0; j < exList.length; j++) {
-      let chunk = []
-      for (let i = parseInt(exList[j][1]); i <= parseInt(exList[j][2]); i++) {
-        chunk.push(exList[j][0]+'['+i+']');
+    let result = new Map()
+    // "A: 1-3; A: 5-10"
+    exString = exString.split(' ').join('')
+    console.log(exString)
+    exString = exString.split(';')
+    for (let entry of exString){
+      entry = entry.split(':')
+      let chapter = entry[0]
+      let exercises = entry[1].split('-')
+      let firstEx = parseInt(exercises[0])
+      let lastEx = parseInt(exercises[1])
+      let range = Array.from(Array(lastEx-firstEx+1).keys()).map((i) => i+firstEx)
+      if (result.has(chapter)) {
+        result.set(chapter, [...result.get(chapter), ...range])
+      } else {
+        result.set(chapter, [...range])
       }
-      result = [...result, ...chunk]
     }
-
+       
     return result
   }
 
@@ -47,6 +43,7 @@ class Form extends Component {
       this.state.members
     )
   }
+
   addMember(event) {
     event.preventDefault()
     this.setState(
@@ -102,7 +99,7 @@ class Form extends Component {
         <ul className="Member-list">
           {this.state.members.map( 
               (member) => 
-                <li className="Member-el"> 
+                <li className="Member-el" key={member.key}> 
                   {member.name} 
                   <button 
                     className="Remove-member" 
@@ -115,10 +112,10 @@ class Form extends Component {
           }
         </ul>
         <p> Exercises: </p>
-        <p> (Input format: [chapter, first ex., last ex.]; [next chapter, ...] ... ) </p>
+        <p> (Input format: chapter: first ex.-last ex.; next chapter: ...] ... ) </p>
         <form onSubmit = {this.onSubmit.bind(this)}>
           <input
-            placeholder="[A, 1, 3]; [A, 5, 10]"
+            placeholder="A: 1-3; A: 5-10"
             value={this.state.exesInput}
             onChange={
               (event) => this.setState({exesInput:event.target.value})

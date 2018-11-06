@@ -3,18 +3,31 @@ import './Distribution.css';
 
 class Distribution extends Component {
   createDistribution(members, exes) {
-    for (let i = 0; i < members.length; i++) {
-      members[i].exercises = '';
+    for (let member of members) {
+      member.exercises = new Map()
     }
 
-    let initialLen = exes.length
+    for (let chapter of exes.entries()) {
+      let exercises = []
+      let from = chapter[1].slice()
+      let initLen = parseInt(chapter[1].length)
+ 
+      for (let i = 0; i < initLen; i++) {
+        let randEx = Math.floor((from.length-1)*Math.random())
+        
+        
+        exercises.push(from[randEx])
+        from.splice(randEx, 1)  
+      }
 
-    for (let i = 0; i < initialLen; i++) {
-      let nextExerciseId = Math.trunc(Math.random()*exes.length)
-      console.log(members)
-      let memberId = i % members.length
-      members[memberId].exercises += (exes[nextExerciseId])+', '
-      exes.splice(nextExerciseId, 1)
+      for (let i = 0; i < members.length; i++) {
+        members[i].exercises.set(
+          chapter[0], exercises.slice(
+            i*exercises.length/members.length,
+            Math.floor((i+1)*exercises.length/members.length)
+          )
+        )
+      }
     }
   }
 
@@ -22,12 +35,23 @@ class Distribution extends Component {
     this.createDistribution(this.props.members, this.props.exercises)
     return (
       <div className="Distribution">
-        <ul>
-          {this.props.members.map(
-              (member) => <li className="Member-el"> {member.name}: {member.exercises}</li>
-            )
-          }
-        </ul>
+          <ul>
+            {this.props.members.map(
+                (member) => <li className="Member-el"> {member.name}: 
+                <ul>
+                  {Array.from(member.exercises.keys()).map(
+                    (key) => 
+                      <li>{key}:{" "}
+                          {member.exercises.get(key).map(
+                            (ex) => <span>{ex} </span>
+                          )}
+                      </li>
+                  )}
+                </ul>
+              </li>
+              )
+            }
+          </ul>
       </div>
     );
   }
