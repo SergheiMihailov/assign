@@ -28,7 +28,6 @@ class Distribution extends Component {
             Math.floor((i+1)*exercises.length/members.length)
           ).sort((a, b) => a - b)
         )
-
       }
     }
   }

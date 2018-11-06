@@ -7,7 +7,7 @@ class Form extends Component {
     this.state = {
       members: [], 
       newMember: '',
-      exesInput: "A.1 - A.17,",
+      exesInput: "",
       exesList: []
     }
   }
@@ -24,7 +24,10 @@ class Form extends Component {
         console.log(entry)
         let chapter = entry[0].split('.')[0]
         let firstEx = parseInt(entry[0].split('.')[1])
-        let lastEx = parseInt(entry[1].split('.')[1])
+        let lastEx = firstEx
+        if (entry.length > 1) {
+          lastEx = parseInt(entry[1].split('.')[1])
+        }
         let range = Array.from(Array(lastEx-firstEx+1).keys()).map((i) => i+firstEx)
         if (result.has(chapter)) {
           result.set(chapter, [...result.get(chapter), ...range])
@@ -115,6 +118,15 @@ class Form extends Component {
         </ul>
         <p> Exercises: </p>
         <p> (Input format: chapter.first ex.-chapter.last ex, ... ) </p>
+        <p> Exercises for SysArch 2018 students:</p>
+        <p>
+          A.1 - A.17, A.19 - A.34,
+          9.1 - 9.3,9.9 - 9.16,9.21 - 9.25,9.31 - 9.33,
+          5.1-5.40,
+          7.1 - 7.12,
+          8.1 – 8.17,
+          12.1 – 12.8,
+          6.1 – 6.18</p>
         <form onSubmit = {this.onSubmit.bind(this)}>
           <input
             placeholder="A.1 - A.17, "
