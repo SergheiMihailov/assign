@@ -89,7 +89,7 @@ class Form extends Component {
             <ol>
               <li>Enter your team members' names</li>
               <li>Enter / copy-paste the exercises in the given format</li>
-              <li>Click on Distribute exercises twice </li>
+              <li>Click on Distribute exercises </li>
               <li>???? </li>
               <li>PROFIT! </li>
             </ol>
