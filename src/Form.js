@@ -7,7 +7,7 @@ class Form extends Component {
     this.state = {
       members: [], 
       newMember: '',
-      exesInput: "",
+      exesInput: "A.1 - A.17, A.19 - A.34, 9.1 - 9.3, 9.9 - 9.16",
       exesList: []
     }
   }
@@ -119,14 +119,22 @@ class Form extends Component {
         <p> Exercises: </p>
         <p> (Input format: chapter.first ex.-chapter.last ex, ... ) </p>
         <p> Exercises for SysArch 2018 students:</p>
-        <p>
+        <ul><li>Book A: <ul>
           A.1 - A.17, A.19 - A.34,
           9.1 - 9.3,9.9 - 9.16,9.21 - 9.25,9.31 - 9.33,
           5.1-5.40,
           7.1 - 7.12,
-          8.1 – 8.17,
-          12.1 – 12.8,
-          6.1 – 6.18</p>
+          8.1 - 8.17,
+          12.1 - 12.8,
+          6.1 - 6.18
+          </ul>
+          </li>
+          <li>Book C (Patterson): <ul>
+          B.2, B.3, B.4, B.5, B.6, B10,B.11, B.15,B.37, B.38,B.39, 3.1 - 3.10,3.17, 3.20,3.23, 3.24,3.27,3.29, 3.30,3.41, 3.42,3.43, 3.44,4.1, 4.2, 4.3,4.4, 4.6, 4.7, 5.1 - 5.7, 5.13, 5.17, 6.1 - 6.8, 6.15,6.16, 6.19,6.20, 4.8 - 4.18
+          </ul>
+          </li>
+          </ul>
+
         <form onSubmit = {this.onSubmit.bind(this)}>
           <input
             placeholder="A.1 - A.17, "
