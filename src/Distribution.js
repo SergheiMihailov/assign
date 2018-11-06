@@ -42,7 +42,7 @@ class Distribution extends Component {
                 <ul>
                   {Array.from(member.exercises.keys()).map(
                     (key) => 
-                      <li>{key}:{" "}
+                      <li>{key}: {' '}
                           {member.exercises.get(key).map(
                             (ex) => <span>{ex} </span>
                           )}

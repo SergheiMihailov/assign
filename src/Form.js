@@ -87,6 +87,14 @@ class Form extends Component {
   render() {
     return (
       <div className="Form">
+        <p> How to use this tool: </p>
+            <ol>
+              <li>Enter your team members' names</li>
+              <li>Enter / copy-paste the exercises in the given format</li>
+              <li>Click on Distribute exercises twice </li>
+              <li>???? </li>
+              <li>PROFIT! </li>
+            </ol>
         <p> Team members: </p>
         <form onSubmit = {this.addMember.bind(this)}>
           <input 
@@ -117,9 +125,8 @@ class Form extends Component {
           }
         </ul>
         <p> Exercises: </p>
-        <p> (Input format: chapter.first ex.-chapter.last ex, ... ) </p>
-        <p> Exercises for SysArch 2018 students:</p>
-        <ul><li>Book A: <ul>
+        <p className="VU"> Exercises for SysArch 2018 students:</p>
+        <ul><li>Book A: <ul className="exString">
           A.1 - A.17, A.19 - A.34,
           9.1 - 9.3,9.9 - 9.16,9.21 - 9.25,9.31 - 9.33,
           5.1-5.40,
@@ -129,7 +136,7 @@ class Form extends Component {
           6.1 - 6.18
           </ul>
           </li>
-          <li>Book C (Patterson): <ul>
+          <li>Book C (Patterson): <ul className="exString">
           B.2, B.3, B.4, B.5, B.6, B10,B.11, B.15,B.37, B.38,B.39, 3.1 - 3.10,3.17, 3.20,3.23, 3.24,3.27,3.29, 3.30,3.41, 3.42,3.43, 3.44,4.1, 4.2, 4.3,4.4, 4.6, 4.7, 5.1 - 5.7, 5.13, 5.17, 6.1 - 6.8, 6.15,6.16, 6.19,6.20, 4.8 - 4.18
           </ul>
           </li>

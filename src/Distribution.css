@@ -3,8 +3,13 @@
     text-align: left;
     min-height: 60vh;
     padding: 0 10% 30px 10%;
+    letter-spacing: 0.05em
 }
 
 .Member-el {
     margin: 10px;
+}
+
+li {
+    line-height: 1.5em
 }

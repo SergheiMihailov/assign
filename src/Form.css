@@ -1,3 +1,7 @@
+p {
+    font-weight: bold;
+}
+
 .Form {
     color: white;
     text-align: left;
@@ -36,4 +40,13 @@ input {
     background-color: darkgray;
     border-radius: 3px;
     height: 2em;
+}
+
+.exString {
+    color: pink;
+    letter-spacing: 0.1em
+}
+
+.VU {
+    color: lightblue;
 }
