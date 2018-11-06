@@ -114,7 +114,7 @@ class Form extends Component {
           }
         </ul>
         <p> Exercises: </p>
-        <p> (Input format: chapter: first ex.-last ex.; next chapter: ...] ... ) </p>
+        <p> (Input format: chapter.first ex.-chapter.last ex, ... ) </p>
         <form onSubmit = {this.onSubmit.bind(this)}>
           <input
             placeholder="A.1 - A.17, "
